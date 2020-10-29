@@ -33,6 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     button {
+        transition: 0.2s all ease-in-out;
         border: none;
         text-align: center;
         text-decoration: none;
@@ -40,6 +41,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 1rem;
         padding: 15px 32px;
         border-radius: 5px;
+        cursor: pointer;
         &:focus {
         outline: 0 !important;
             }
