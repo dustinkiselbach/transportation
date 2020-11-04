@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { rgba } from 'polished'
 import React, { useState } from 'react'
 import styled from 'styled-components'
@@ -7,32 +8,45 @@ import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
 
 const Contact: React.FC = ({}) => {
+  const router = useRouter()
   const [form, setForm] = useState({
     name: '',
     subject: '',
     message: ''
   })
 
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+
   const onChange = (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    console.log(form)
     setForm({ ...form, [e.currentTarget.name]: e.currentTarget.value })
   }
 
   const onSubmit = async () => {
+    setLoading(isLoading => !isLoading)
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(form)
       })
       const info = await res.json()
-      console.log(info)
+      if (info) {
+        router.push('contact/success')
+      } else {
+        setError(true)
+        setTimeout(() => {
+          setError(false)
+        }, 4000)
+      }
     } catch (e) {
-      console.log(e)
+      console.log("Error:" + e)
     }
+    setLoading(isLoading => !isLoading)
   }
 
   return (
@@ -60,7 +74,10 @@ const Contact: React.FC = ({}) => {
               <ContactFormContainer>
                 <h2>Send Us a Message!</h2>
                 <ContactForm {...{ onChange }} />
-                <Button text='Send Message' {...{ onSubmit }} />
+                <ErrorMsg>
+                  {error ? 'Please complete all fields' : null}
+                </ErrorMsg>
+                <Button text='Send Message' {...{ onSubmit, loading }} />
               </ContactFormContainer>
             </ContactContent>
           </ContactMain>
@@ -121,4 +138,9 @@ const ContactItem = styled.ul`
 `
 const ContactFormContainer = styled.div`
   flex: 1;
+`
+const ErrorMsg = styled.div`
+  margin: 1rem 0;
+  color: #dc3545;
+  font-weight: 500;
 `

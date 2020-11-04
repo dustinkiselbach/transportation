@@ -91,7 +91,6 @@ const HeroTop = styled.div`
   h2 {
     font-weight: 400;
     align-self: flex-end;
-    margin-left: 2rem;
   }
 `
 
@@ -127,7 +126,6 @@ const HeroCallUs = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-right: 1rem;
 
   h3 {
     font-weight: 300;

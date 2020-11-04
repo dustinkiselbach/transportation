@@ -17,17 +17,19 @@ export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
     }
   })
 
-  const senderMail = 'foo@example.com'
-  const name = 'Dustin Kiselbach'
-  const content = 'hello'
   const to = 'dustinkiselbach@gmail.com'
+  const { name, subject, message } = req.body as Record<string, string>
+
+  if (!name.length || !subject.length || !message.length) {
+    return res.status(403).send(false)
+  }
 
   try {
     const info = await transporter.sendMail({
-      from: senderMail,
-      to: to,
-      text: content,
-      subject: name
+      to,
+      subject,
+      from: name,
+      text: message
     })
 
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
@@ -35,8 +37,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
     // Preview only available when sending through an Ethereal account
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-    res.status(200).json(true)
+    return res.status(200).send(true)
   } catch (e) {
-    res.status(400).json(e)
+    return res.status(400).end(JSON.stringify(e))
   }
 }

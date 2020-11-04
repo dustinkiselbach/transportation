@@ -1,6 +1,7 @@
 import { rgba } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
+import NextLink from 'next/link'
 import { Container } from './Container'
 
 interface FooterProps {}
@@ -12,13 +13,28 @@ export const Footer: React.FC<FooterProps> = ({}) => {
         <FooterMain>
           <FooterItem>
             <h4>Madison County Mobility Managment</h4>
-            <li>Contact Us</li>
-            <li>About Us</li>
+            <li>
+              <NextLink href={'/contact'}>Contact Us</NextLink>
+            </li>
+            <li>
+              <NextLink href={'/schedules'}>Schedules</NextLink>
+            </li>
           </FooterItem>
           <FooterItem>
             <h4>Helpful Links</h4>
-            <li>Coordinated Transportation Plan</li>
-            <li>Madison County Rural Health Council</li>
+            <li>
+              <a
+                href='https://www.madisoncounty.ny.gov/DocumentCenter/View/1010/Coordinated-Transportation-Plan-2010---May-2015-Update-PDF?bidId= '
+                target='_blank'
+              >
+                Coordinated Transportation Plan
+              </a>
+            </li>
+            <li>
+              <a href='http://www.mcruralhealthcouncil.org/' target='_blank'>
+                Madison County Rural Health Council
+              </a>
+            </li>
           </FooterItem>
           <FooterItem>
             <h4>Find Us Online</h4>
@@ -52,7 +68,14 @@ const FooterItem = styled.ul`
     &:not(:first-child) {
       margin-top: 8px;
     }
-
     color: ${props => rgba(props.theme.colors.colorText, 0.75)};
+
+    a {
+      color: ${props => rgba(props.theme.colors.colorText, 0.75)};
+      &:hover {
+        color: ${props => props.theme.colors.colorText};
+      }
+      transition: all 0.2s ease-in-out;
+    }
   }
 `
