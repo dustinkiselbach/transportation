@@ -3,8 +3,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
+import { ContentfulItems } from '../types/Contentful'
+import { createClient } from 'contentful'
 
-const Services: React.FC = ({}) => {
+interface ServicesProps {
+  items: ContentfulItems[]
+}
+
+const Services: React.FC<ServicesProps> = ({ items }) => {
   return (
     <Layout>
       <_Services>
@@ -59,48 +65,42 @@ const Services: React.FC = ({}) => {
               <span>In</span>ventory of Resources
             </h1>
             <ResourceItems>
-              <ResoureceItem>
-                <h4>Title</h4>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aliquid officia alias quo! Voluptatibus cumque nostrum saepe
-                  omnis magnam nulla reprehenderit.
-                </p>
-                <ResourceContact>
-                  <li>999-999-9999</li>
-                  <li>www.lorem.com</li>
-                </ResourceContact>
-              </ResoureceItem>
-              <ResoureceItem>
-                <h4>Title</h4>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aliquid officia alias quo! Voluptatibus cumque nostrum saepe
-                  omnis magnam nulla reprehenderit.
-                </p>
-                <ResourceContact>
-                  <li>999-999-9999</li>
-                  <li>www.lorem.com</li>
-                </ResourceContact>
-              </ResoureceItem>
-              <ResoureceItem>
-                <h4>Title</h4>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Aliquid officia alias quo! Voluptatibus cumque nostrum saepe
-                  omnis magnam nulla reprehenderit.
-                </p>
-                <ResourceContact>
-                  <li>999-999-9999</li>
-                  <li>www.lorem.com</li>
-                </ResourceContact>
-              </ResoureceItem>
+              {items.map(
+                ({ fields: { title, description, contactItems } }, i) => (
+                  <ResoureceItem key={i}>
+                    <h4>{title}</h4>
+                    <p>{description}</p>
+                    <ResourceContact>
+                      {contactItems.split(',').map((contact, i2) => (
+                        <li key={i2}>{contact}</li>
+                      ))}
+                    </ResourceContact>
+                  </ResoureceItem>
+                )
+              )}
             </ResourceItems>
           </Resources>
         </Container>
       </_Services>
     </Layout>
   )
+}
+
+export async function getStaticProps () {
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE || '',
+    accessToken: process.env.ACCESS_TOKEN || ''
+  })
+
+  const res = await client.getEntries<ContentfulItems>()
+
+  const items = res.items
+
+  return {
+    props: {
+      items
+    }
+  }
 }
 
 const _Services = styled.section`
@@ -136,6 +136,10 @@ const ServicesItem = styled.div`
 
   &:first-child {
     margin-right: 1rem;
+  }
+  @media (max-width: 600px) {
+    margin-top: 2rem;
+    flex: 0 0 100%;
   }
 `
 const ServicesItemHeader = styled.div`

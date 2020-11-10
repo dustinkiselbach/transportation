@@ -44,7 +44,7 @@ const Contact: React.FC = ({}) => {
         }, 4000)
       }
     } catch (e) {
-      console.log("Error:" + e)
+      console.log('Error:' + e)
     }
     setLoading(isLoading => !isLoading)
   }
@@ -118,6 +118,9 @@ const ContactContent = styled.div`
 
 const ContactItems = styled.div`
   flex: 1;
+  @media (max-width: 600px) {
+    flex: 0 0 100%;
+  }
 `
 
 const ContactItem = styled.ul`
@@ -138,6 +141,10 @@ const ContactItem = styled.ul`
 `
 const ContactFormContainer = styled.div`
   flex: 1;
+  @media (max-width: 600px) {
+    margin-top: 2rem;
+    flex: 0 0 100%;
+  }
 `
 const ErrorMsg = styled.div`
   margin: 1rem 0;

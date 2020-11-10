@@ -1,4 +1,4 @@
-import { rgba } from 'polished'
+import { darken, rgba } from 'polished'
 import styled from 'styled-components'
 import { Button } from '../components/Button'
 import { Layout } from '../components/Layout'
@@ -71,7 +71,7 @@ export default function Home () {
 }
 
 const Hero = styled.section<{ img: string }>`
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 2rem);
   width: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url(${props => props.img});
@@ -91,6 +91,12 @@ const HeroTop = styled.div`
   h2 {
     font-weight: 400;
     align-self: flex-end;
+    @media (max-width: 1400px) {
+      font-size: 1.2rem;
+    }
+  }
+  @media (max-width: 600px) {
+    margin-top: 1rem;
   }
 `
 
@@ -106,11 +112,18 @@ const HeroMain = styled.div`
     &:nth-child(2) {
       margin-bottom: 4rem;
     }
+    @media (max-width: 1800px) {
+      font-size: 4rem;
+    }
   }
 
   h2 {
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 4rem;
+    text-align: center;
+  }
+  @media (max-width: 1000px) {
+    width: 100%;
     text-align: center;
   }
 `
@@ -128,7 +141,14 @@ const HeroCallUs = styled.div`
   align-items: center;
 
   h3 {
+    color: ${props => darken(0.09, props.theme.colors.colorOffWhite)};
     font-weight: 300;
+    @media (max-width: 1400px) {
+      font-size: 1.1rem;
+    }
+  }
+  @media (max-width: 600px) {
+    display: none;
   }
 `
 const About = styled.section`
@@ -136,10 +156,16 @@ const About = styled.section`
   display: flex;
   padding: 3rem 0;
   position: relative;
+  @media (max-width: 1200px) {
+    height: auto;
+  }
 `
 const __Fillgrid = styled.div`
   height: 100%;
   width: 50%;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `
 
 const AboutContent = styled.div`
@@ -153,6 +179,18 @@ const AboutContent = styled.div`
   flex-direction: column;
   padding: 2rem;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 1200px) {
+    height: 100%;
+    transform: translate(0, 0);
+    top: 0;
+    left: 0;
+    position: relative;
+  }
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 
   h1 {
     font-weight: 500;
@@ -179,4 +217,7 @@ const AboutImg = styled.div`
   background-position: center center;
   height: 100%;
   width: 50%;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `

@@ -52,12 +52,19 @@ const _Footer = styled.footer`
 `
 
 const FooterMain = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   padding: 2rem 0;
   width: 100%;
 `
 const FooterItem = styled.ul`
+  flex: 1;
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+    flex: 0 0 100%;
+  }
   h4 {
     margin-bottom: 1rem;
     font-size: 1.2rem;

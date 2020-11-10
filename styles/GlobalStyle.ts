@@ -13,6 +13,16 @@ export const GlobalStyle = createGlobalStyle`
     html {
         scroll-behavior: smooth;
         font-size: 16px; 
+
+       
+        @media (max-width: 1200px) {
+            font-size: 0.9rem;
+        }
+
+        
+        @media (max-width: 900px) {
+            font-size: 0.8rem;
+        }
     }
 
     body {
@@ -40,7 +50,7 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         display: inline-block;
         font-size: 1rem;
-        padding: 15px 32px;
+        padding: .9rem 2rem;
         border-radius: 5px;
         cursor: pointer;
         &:focus {
