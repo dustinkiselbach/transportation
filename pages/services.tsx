@@ -3,14 +3,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
-import { ContentfulItems } from '../types/Contentful'
+import { ContentfulResources } from '../types/Contentful'
 import { createClient } from 'contentful'
 
 interface ServicesProps {
-  items: ContentfulItems[]
+  resources: ContentfulResources[]
 }
 
-const Services: React.FC<ServicesProps> = ({ items }) => {
+const Services: React.FC<ServicesProps> = ({ resources }) => {
   return (
     <Layout>
       <_Services>
@@ -65,7 +65,7 @@ const Services: React.FC<ServicesProps> = ({ items }) => {
               <span>In</span>ventory of Resources
             </h1>
             <ResourceItems>
-              {items.map(
+              {resources.map(
                 ({ fields: { title, description, contactItems } }, i) => (
                   <ResoureceItem key={i}>
                     <h4>{title}</h4>
@@ -92,13 +92,15 @@ export async function getStaticProps () {
     accessToken: process.env.ACCESS_TOKEN || ''
   })
 
-  const res = await client.getEntries<ContentfulItems>()
+  const res = await client.getEntries<ContentfulResources>({
+    content_type: 'resources'
+  })
 
-  const items = res.items
+  const resources = res.items
 
   return {
     props: {
-      items
+      resources
     }
   }
 }
@@ -201,10 +203,18 @@ const ResoureceItem = styled.div`
     margin-bottom: 1rem;
   }
 
-  flex: 1 1;
+  flex: 1 1 30%;
   padding: 2rem;
   background-color: ${props => props.theme.colors.colorOffWhite};
   margin: 1rem 1rem 1rem 0;
+
+  @media (max-width: 1000px) {
+    flex: 1 1 44%;
+  }
+
+  @media (max-width: 600px) {
+    flex: 0 0 100%;
+  }
 `
 
 const ResourceContact = styled.ul`

@@ -1,15 +1,32 @@
 import { darken, rgba } from 'polished'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Button } from '../components/Button'
 import { Layout } from '../components/Layout'
 import { Container } from '../components/Container'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { isServer } from '../utils/isServer'
 
 export default function Home () {
   const router = useRouter()
+
+  const [heroUrl, setHeroUrl] = useState<null | string>(null)
+
+  useEffect(() => {
+    if (!isServer()) {
+      const backgroundImageLoader = new Image()
+      backgroundImageLoader.src = '/hero.jpg'
+
+      backgroundImageLoader.onload = () => {
+        setHeroUrl('/hero.jpg')
+      }
+    }
+  }, [])
+
   return (
     <Layout>
-      <Hero img={'/hero.jpg'}>
+      <Hero img={heroUrl || ''}>
+        <Overlay imageLoaded={!!heroUrl} />
         <Container>
           <HeroTop>
             <h2>Madison County Mobility Management</h2>
@@ -63,7 +80,7 @@ export default function Home () {
             </p>
           </AboutContent>
           <__Fillgrid />
-          <AboutImg></AboutImg>
+          <AboutImg />
         </Container>
       </About>
     </Layout>
@@ -98,6 +115,23 @@ const HeroTop = styled.div`
   @media (max-width: 600px) {
     margin-top: 1rem;
   }
+`
+
+const Overlay = styled.div<{ imageLoaded: boolean }>`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  background-color: ${props => props.theme.colors.colorText};
+  transition: all 0.8s ease-in-out;
+
+  ${({ imageLoaded }) =>
+    imageLoaded &&
+    css`
+      background-color: transparent;
+      pointer-events: none;
+    `}
 `
 
 const HeroMain = styled.div`
@@ -143,8 +177,9 @@ const HeroCallUs = styled.div`
   h3 {
     color: ${props => darken(0.09, props.theme.colors.colorOffWhite)};
     font-weight: 300;
+    font-size: 1.1rem;
     @media (max-width: 1400px) {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
   @media (max-width: 600px) {

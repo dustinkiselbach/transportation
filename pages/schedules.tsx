@@ -1,10 +1,16 @@
+import { createClient } from 'contentful'
 import { lighten, rgba } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
+import { ContentfulSchedules } from '../types/Contentful'
 
-const Schedules: React.FC = ({}) => {
+interface SchedulesProps {
+  schedules: ContentfulSchedules[]
+}
+
+const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
   return (
     <Layout>
       <_Schedules>
@@ -15,13 +21,17 @@ const Schedules: React.FC = ({}) => {
             </h1>
 
             <SchedulesItems>
-              <SchedulesItem>
-                <Route>
-                  <a href=''>Morrisville, NY:</a>
-                  <p>[tue]</p>
-                </Route>
-                <h5>Grocery Shopping Shuttle</h5>
-              </SchedulesItem>
+              {schedules.map(
+                ({ fields: { title, days, location, pdfLink } }, i) => (
+                  <SchedulesItem key={i}>
+                    <Route>
+                      <a href={pdfLink}>{location}:</a>
+                      <p>[{days}]</p>
+                    </Route>
+                    <h5>{title}</h5>
+                  </SchedulesItem>
+                )
+              )}
             </SchedulesItems>
           </SchedulesMain>
         </Container>
@@ -31,6 +41,25 @@ const Schedules: React.FC = ({}) => {
 }
 
 export default Schedules
+
+export async function getStaticProps () {
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE || '',
+    accessToken: process.env.ACCESS_TOKEN || ''
+  })
+
+  const res = await client.getEntries<ContentfulSchedules>({
+    content_type: 'schedules'
+  })
+
+  const schedules = res.items
+
+  return {
+    props: {
+      schedules
+    }
+  }
+}
 
 const _Schedules = styled.section`
   margin: 2rem 0;

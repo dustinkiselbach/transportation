@@ -9,7 +9,7 @@ function MyApp ({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Transportation</title>
+        <title>Madison County Mobility Management</title>
       </Head>
       <ThemeProvider theme={baseTheme}>
         <GlobalStyle />

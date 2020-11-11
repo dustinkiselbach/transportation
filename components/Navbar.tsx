@@ -167,15 +167,19 @@ const NavbarItem = styled.li<{ active: boolean }>`
   }
 `
 const MobileMenu = styled.div<{ clicked: boolean }>`
-  @media (min-width: 450px) {
+  @media (min-width: 600px) {
     display: none;
   }
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: ${props => props.theme.colors.colorPrimary};
+  background-image: linear-gradient(${props =>
+    rgba(props.theme.colors.colorPrimary, 0.5)},${props =>
+  rgba(props.theme.colors.colorPrimary, 0.5)}), linear-gradient(white, white) ;
+  /* background-color: ${props =>
+    rgba(props.theme.colors.colorPrimary, 0.5)}; */
   z-index: 2;
-  transform: translateX(${props => (props.clicked ? '0' : '500px')});
+  transform: translateX(${props => (props.clicked ? '0' : '600px')});
   transition: all 0.2s ease-in-out;
 `
 const MobileMenuContainer = styled.ul`
