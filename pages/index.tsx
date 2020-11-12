@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout'
 import { Container } from '../components/Container'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+
 import { isServer } from '../utils/isServer'
 
 export default function Home () {
@@ -24,66 +25,68 @@ export default function Home () {
   }, [])
 
   return (
-    <Layout>
-      <Hero img={heroUrl || ''}>
-        <Overlay imageLoaded={!!heroUrl} />
-        <Container>
-          <HeroTop>
-            <h2>Madison County Mobility Management</h2>
-            <HeroCallUs>
-              <h3>Call us Mon-Friday 8-4pm</h3>
+    <>
+      <Layout>
+        <Hero img={heroUrl || ''}>
+          <Overlay imageLoaded={!!heroUrl} />
+          <Container>
+            <HeroTop>
+              <h2>Madison County Mobility Management</h2>
+              <HeroCallUs>
+                <h3>Call us Mon-Friday 8-4pm</h3>
+                <ButtonContainer>
+                  <Button text='999-999-9999' variant='secondary' />
+                </ButtonContainer>
+              </HeroCallUs>
+            </HeroTop>
+            <HeroMain>
+              <h1>We Go the</h1>
+              <h1>Extra Mile for You</h1>
+              <h2>Need a lift? We can help.</h2>
               <ButtonContainer>
-                <Button text='999-999-9999' variant='secondary' />
+                <Button
+                  text='Learn More'
+                  onSubmit={() => router.push('#about')}
+                />
               </ButtonContainer>
-            </HeroCallUs>
-          </HeroTop>
-          <HeroMain>
-            <h1>We Go the</h1>
-            <h1>Extra Mile for You</h1>
-            <h2>Need a lift? We can help.</h2>
-            <ButtonContainer>
-              <Button
-                text='Learn More'
-                onSubmit={() => router.push('#about')}
-              />
-            </ButtonContainer>
-          </HeroMain>
-        </Container>
-      </Hero>
-      <About id='about'>
-        <Container>
-          <AboutContent>
-            <h1>
-              <span>Ab</span>out
-            </h1>
-            <p>
-              Mobility Management is about bringing together the people who need
-              transportation, with the people who provide transportation and the
-              people who can pay for transportation, to address community
-              transportation needs.
-            </p>
-            <p>
-              It is making the most of existing resources, creating new services
-              when needed and looking at the issues through the lens of the
-              rider
-            </p>
-            <h2>How it benefits your community: </h2>
-            <p>
-              Mobility management can be the conduit for transportation
-              solutions within your community by allowing the human service
-              organizations to focus delivering their services and not spend
-              time and resources deciphering how people will access those
-              services. Mobility management keeps track of the pulse within the
-              community and how various programs may be able to collaborate or
-              combine efforts to provide better access to the available programs
-              and services in the community.
-            </p>
-          </AboutContent>
-          <__Fillgrid />
-          <AboutImg />
-        </Container>
-      </About>
-    </Layout>
+            </HeroMain>
+          </Container>
+        </Hero>
+        <About id='about'>
+          <Container>
+            <AboutContent>
+              <h1>
+                <span>Ab</span>out
+              </h1>
+              <p>
+                Mobility Management is about bringing together the people who
+                need transportation, with the people who provide transportation
+                and the people who can pay for transportation, to address
+                community transportation needs.
+              </p>
+              <p>
+                It is making the most of existing resources, creating new
+                services when needed and looking at the issues through the lens
+                of the rider
+              </p>
+              <h2>How it benefits your community: </h2>
+              <p>
+                Mobility management can be the conduit for transportation
+                solutions within your community by allowing the human service
+                organizations to focus delivering their services and not spend
+                time and resources deciphering how people will access those
+                services. Mobility management keeps track of the pulse within
+                the community and how various programs may be able to
+                collaborate or combine efforts to provide better access to the
+                available programs and services in the community.
+              </p>
+            </AboutContent>
+            <__Fillgrid />
+            <AboutImg />
+          </Container>
+        </About>
+      </Layout>
+    </>
   )
 }
 

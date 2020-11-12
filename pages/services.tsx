@@ -5,6 +5,8 @@ import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
 import { ContentfulResources } from '../types/Contentful'
 import { createClient } from 'contentful'
+import { NextSeo } from 'next-seo'
+import { SERVICES_SEO } from '../seo/next-seo.config'
 
 interface ServicesProps {
   resources: ContentfulResources[]
@@ -12,77 +14,80 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ resources }) => {
   return (
-    <Layout>
-      <_Services>
-        <Container>
-          <ServicesMain>
-            <h1>
-              <span>Se</span>rvices
-            </h1>
-            <ServicesItems>
-              <ServicesItem>
-                <ServicesItemHeader>
-                  <h2>Transportation Coordination</h2>
-                </ServicesItemHeader>
-                <ServicesItemContent>
-                  <h3>
-                    Transportation Coordination with Madison County Mobility
-                    Management can look like:
-                  </h3>
-                  <li>
-                    Contacting for assistance with connecting to resources
-                  </li>
-                  <li>
-                    Seeking assistance with planning a local trip throughout
-                    Madison County
-                  </li>
-                  <li>
-                    Coordinating with service providers to facilitate
-                    transportation services that fit individuals best
-                  </li>
-                </ServicesItemContent>
-              </ServicesItem>
-              <ServicesItem>
-                <ServicesItemHeader>
-                  <h2>MCRHC Mobility Manager MTS Token Program</h2>
-                </ServicesItemHeader>
-                <ServicesItemContent>
-                  <p>
-                    Madison Transit System uses a token system to pay for public
-                    transit trips with the shuttles, if eligible, contact the
-                    Madison County Mobility Management office to ask about
-                    applying for bulk token purchases and/or “free rides” (based
-                    on availability at time of contact).
-                  </p>
-                </ServicesItemContent>
-              </ServicesItem>
-            </ServicesItems>
-          </ServicesMain>
-        </Container>
-        <Container>
-          <Resources>
-            <h1>
-              <span>In</span>ventory of Resources
-            </h1>
-            <ResourceItems>
-              {resources.map(
-                ({ fields: { title, description, contactItems } }, i) => (
-                  <ResoureceItem key={i}>
-                    <h4>{title}</h4>
-                    <p>{description}</p>
-                    <ResourceContact>
-                      {contactItems.split(',').map((contact, i2) => (
-                        <li key={i2}>{contact}</li>
-                      ))}
-                    </ResourceContact>
-                  </ResoureceItem>
-                )
-              )}
-            </ResourceItems>
-          </Resources>
-        </Container>
-      </_Services>
-    </Layout>
+    <>
+      <NextSeo {...SERVICES_SEO} />
+      <Layout>
+        <_Services>
+          <Container>
+            <ServicesMain>
+              <h1>
+                <span>Se</span>rvices
+              </h1>
+              <ServicesItems>
+                <ServicesItem>
+                  <ServicesItemHeader>
+                    <h2>Transportation Coordination</h2>
+                  </ServicesItemHeader>
+                  <ServicesItemContent>
+                    <h3>
+                      Transportation Coordination with Madison County Mobility
+                      Management can look like:
+                    </h3>
+                    <li>
+                      Contacting for assistance with connecting to resources
+                    </li>
+                    <li>
+                      Seeking assistance with planning a local trip throughout
+                      Madison County
+                    </li>
+                    <li>
+                      Coordinating with service providers to facilitate
+                      transportation services that fit individuals best
+                    </li>
+                  </ServicesItemContent>
+                </ServicesItem>
+                <ServicesItem>
+                  <ServicesItemHeader>
+                    <h2>MCRHC Mobility Manager MTS Token Program</h2>
+                  </ServicesItemHeader>
+                  <ServicesItemContent>
+                    <p>
+                      Madison Transit System uses a token system to pay for
+                      public transit trips with the shuttles, if eligible,
+                      contact the Madison County Mobility Management office to
+                      ask about applying for bulk token purchases and/or “free
+                      rides” (based on availability at time of contact).
+                    </p>
+                  </ServicesItemContent>
+                </ServicesItem>
+              </ServicesItems>
+            </ServicesMain>
+          </Container>
+          <Container>
+            <Resources>
+              <h1>
+                <span>In</span>ventory of Resources
+              </h1>
+              <ResourceItems>
+                {resources.map(
+                  ({ fields: { title, description, contactItems } }, i) => (
+                    <ResoureceItem key={i}>
+                      <h4>{title}</h4>
+                      <p>{description}</p>
+                      <ResourceContact>
+                        {contactItems.split(',').map((contact, i2) => (
+                          <li key={i2}>{contact}</li>
+                        ))}
+                      </ResourceContact>
+                    </ResoureceItem>
+                  )
+                )}
+              </ResourceItems>
+            </Resources>
+          </Container>
+        </_Services>
+      </Layout>
+    </>
   )
 }
 

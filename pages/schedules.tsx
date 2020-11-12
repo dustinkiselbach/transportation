@@ -1,9 +1,11 @@
 import { createClient } from 'contentful'
+import { NextSeo } from 'next-seo'
 import { lighten, rgba } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
+import { SCHEDULES_SEO } from '../seo/next-seo.config'
 import { ContentfulSchedules } from '../types/Contentful'
 
 interface SchedulesProps {
@@ -12,31 +14,34 @@ interface SchedulesProps {
 
 const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
   return (
-    <Layout>
-      <_Schedules>
-        <Container>
-          <SchedulesMain>
-            <h1>
-              <span>Sc</span>hedules
-            </h1>
+    <>
+      <NextSeo {...SCHEDULES_SEO} />
+      <Layout>
+        <_Schedules>
+          <Container>
+            <SchedulesMain>
+              <h1>
+                <span>Sc</span>hedules
+              </h1>
 
-            <SchedulesItems>
-              {schedules.map(
-                ({ fields: { title, days, location, pdfLink } }, i) => (
-                  <SchedulesItem key={i}>
-                    <Route>
-                      <a href={pdfLink}>{location}:</a>
-                      <p>[{days}]</p>
-                    </Route>
-                    <h5>{title}</h5>
-                  </SchedulesItem>
-                )
-              )}
-            </SchedulesItems>
-          </SchedulesMain>
-        </Container>
-      </_Schedules>
-    </Layout>
+              <SchedulesItems>
+                {schedules.map(
+                  ({ fields: { title, days, location, pdfLink } }, i) => (
+                    <SchedulesItem key={i}>
+                      <Route>
+                        <a href={pdfLink}>{location}:</a>
+                        <p>[{days}]</p>
+                      </Route>
+                      <h5>{title}</h5>
+                    </SchedulesItem>
+                  )
+                )}
+              </SchedulesItems>
+            </SchedulesMain>
+          </Container>
+        </_Schedules>
+      </Layout>
+    </>
   )
 }
 

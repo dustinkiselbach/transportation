@@ -1,16 +1,15 @@
 import { AppProps } from 'next/app'
-import Head from 'next/head'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from '../styles/GlobalStyle'
 import { baseTheme } from '../styles/themes/baseTheme'
+import { DefaultSeo } from 'next-seo'
+import { DEFAULT_SEO } from '../seo/next-seo.config'
 
 function MyApp ({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <title>Madison County Mobility Management</title>
-      </Head>
+      <DefaultSeo {...DEFAULT_SEO} />
       <ThemeProvider theme={baseTheme}>
         <GlobalStyle />
         <Component {...pageProps} />
