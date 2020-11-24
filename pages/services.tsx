@@ -104,6 +104,7 @@ export async function getStaticProps () {
   const resources = res.items
 
   return {
+    revalidate: 60 * 10,
     props: {
       resources
     }

@@ -35,11 +35,11 @@ export const Button: React.FC<ButtonProps> = ({
 const PrimaryButton = styled.button<{ isLoading: boolean }>`
   background-color: ${props =>
     props.isLoading
-      ? lighten(0.3, props.theme.colors.colorPrimary)
+      ? lighten(0.2, props.theme.colors.colorPrimary)
       : props.theme.colors.colorPrimary};
   color: ${props => props.theme.colors.colorText};
   &:hover {
-    background-color: ${props => lighten(0.3, props.theme.colors.colorPrimary)};
+    background-color: ${props => lighten(0.2, props.theme.colors.colorPrimary)};
   }
 `
 const SecondaryButton = styled.button`

@@ -13,6 +13,7 @@ interface SchedulesProps {
 }
 
 const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
+  console.log(schedules)
   return (
     <>
       <NextSeo {...SCHEDULES_SEO} />
@@ -26,10 +27,10 @@ const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
 
               <SchedulesItems>
                 {schedules.map(
-                  ({ fields: { title, days, location, pdfLink } }, i) => (
+                  ({ fields: { title, days, location, pdf } }, i) => (
                     <SchedulesItem key={i}>
                       <Route>
-                        <a href={pdfLink}>{location}:</a>
+                        <a href={pdf.fields.file.url}>{location}:</a>
                         <p>[{days}]</p>
                       </Route>
                       <h5>{title}</h5>
@@ -60,6 +61,7 @@ export async function getStaticProps () {
   const schedules = res.items
 
   return {
+    revalidate: 60 * 10,
     props: {
       schedules
     }
@@ -68,6 +70,7 @@ export async function getStaticProps () {
 
 const _Schedules = styled.section`
   margin: 2rem 0;
+  /* min-height: 50vh; */
 `
 
 const SchedulesMain = styled.div`
@@ -98,9 +101,7 @@ const Route = styled.div`
   a {
     margin-right: 4px;
     color: ${props => props.theme.colors.colorText};
-    &:hover {
-      text-decoration: underline;
-    }
+    text-decoration: underline;
   }
   p {
     color: ${props => lighten(0.2, props.theme.colors.colorText)};

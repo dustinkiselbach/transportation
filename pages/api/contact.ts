@@ -4,20 +4,19 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
 export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
-  let testAccount = await nodemailer.createTestAccount()
-
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
+
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass // generated ethereal password
+      user: process.env.EMAIL_USER || '', // generated ethereal user
+      pass: process.env.EMAIL_PASSWORD || '' // generated ethereal password
     }
   })
 
-  const to = 'dustinkiselbach@gmail.com'
+  const to = 'dymobility@gmail.com'
   const { name, subject, message } = req.body as Record<string, string>
 
   if (!name.length || !subject.length || !message.length) {
@@ -39,6 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     return res.status(200).send(true)
   } catch (e) {
+    console.log(e)
     return res.status(400).end(JSON.stringify(e))
   }
 }
