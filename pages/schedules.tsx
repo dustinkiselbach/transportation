@@ -1,19 +1,19 @@
-import { createClient } from 'contentful'
+import { Entry } from 'contentful'
 import { NextSeo } from 'next-seo'
 import { lighten, rgba } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
+import { transportationCMS } from '../cms/transportationCMS'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
 import { SCHEDULES_SEO } from '../seo/next-seo.config'
 import { ContentfulSchedules } from '../types/Contentful'
 
 interface SchedulesProps {
-  schedules: ContentfulSchedules[]
+  schedules: Entry<ContentfulSchedules>[]
 }
 
 const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
-  console.log(schedules)
   return (
     <>
       <NextSeo {...SCHEDULES_SEO} />
@@ -27,8 +27,8 @@ const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
 
               <SchedulesItems>
                 {schedules.map(
-                  ({ fields: { title, days, location, pdf } }, i) => (
-                    <SchedulesItem key={i}>
+                  ({ fields: { title, days, location, pdf }, sys: { id } }) => (
+                    <SchedulesItem key={id}>
                       <Route>
                         <a href={pdf.fields.file.url}>{location}:</a>
                         <p>[{days}]</p>
@@ -49,12 +49,7 @@ const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
 export default Schedules
 
 export async function getStaticProps () {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE || '',
-    accessToken: process.env.ACCESS_TOKEN || ''
-  })
-
-  const res = await client.getEntries<ContentfulSchedules>({
+  const res = await transportationCMS.getEntries<ContentfulSchedules>({
     content_type: 'schedules'
   })
 

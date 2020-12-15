@@ -25,3 +25,7 @@ export const SERVICES_SEO: NextSeoProps = {
 export const SCHEDULES_SEO: NextSeoProps = {
   title: `${SITE_NAME} | Schedules`
 }
+
+export const ANNOUNCEMENTS_SEO: NextSeoProps = {
+  title: `${SITE_NAME} | Announcements`
+}

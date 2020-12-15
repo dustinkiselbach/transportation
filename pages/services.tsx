@@ -4,12 +4,13 @@ import styled from 'styled-components'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
 import { ContentfulResources } from '../types/Contentful'
-import { createClient } from 'contentful'
+import { Entry } from 'contentful'
 import { NextSeo } from 'next-seo'
 import { SERVICES_SEO } from '../seo/next-seo.config'
+import { transportationCMS } from '../cms/transportationCMS'
 
 interface ServicesProps {
-  resources: ContentfulResources[]
+  resources: Entry<ContentfulResources>[]
 }
 
 const Services: React.FC<ServicesProps> = ({ resources }) => {
@@ -70,16 +71,37 @@ const Services: React.FC<ServicesProps> = ({ resources }) => {
               </h1>
               <ResourceItems>
                 {resources.map(
-                  ({ fields: { title, description, contactItems } }, i) => (
-                    <ResoureceItem key={i}>
+                  ({
+                    fields: { title, description, contactItems },
+                    sys: { id }
+                  }) => (
+                    <ResourceItem key={id}>
                       <h4>{title}</h4>
                       <p>{description}</p>
                       <ResourceContact>
-                        {contactItems.split(',').map((contact, i2) => (
-                          <li key={i2}>{contact}</li>
-                        ))}
+                        {contactItems.split(',').map(contact => {
+                          if (contact.split('').includes('@')) {
+                            return (
+                              <li key={contact}>
+                                <a href={`mailto:${contact}`}>{contact}</a>
+                              </li>
+                            )
+                          } else if (contact.split('').includes('-')) {
+                            return (
+                              <li key={contact}>
+                                <a href={`tel:${contact}`}>{contact}</a>
+                              </li>
+                            )
+                          } else {
+                            return (
+                              <li key={contact}>
+                                <a href={contact}>{contact}</a>
+                              </li>
+                            )
+                          }
+                        })}
                       </ResourceContact>
-                    </ResoureceItem>
+                    </ResourceItem>
                   )
                 )}
               </ResourceItems>
@@ -92,12 +114,7 @@ const Services: React.FC<ServicesProps> = ({ resources }) => {
 }
 
 export async function getStaticProps () {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE || '',
-    accessToken: process.env.ACCESS_TOKEN || ''
-  })
-
-  const res = await client.getEntries<ContentfulResources>({
+  const res = await transportationCMS.getEntries<ContentfulResources>({
     content_type: 'resources'
   })
 
@@ -163,6 +180,7 @@ const ServicesItemHeader = styled.div`
 
 const ServicesItemContent = styled.ul`
   padding: 2rem;
+  list-style-type: '- ';
 
   h3 {
     margin-bottom: 2rem;
@@ -170,8 +188,7 @@ const ServicesItemContent = styled.ul`
     font-size: 1rem;
     color: ${props => rgba(props.theme.colors.colorText, 0.9)};
   }
-  li,
-  p {
+  li {
     margin-left: 1rem;
 
     font-weight: 500;
@@ -198,7 +215,7 @@ const ResourceItems = styled.div`
   flex-wrap: wrap;
 `
 
-const ResoureceItem = styled.div`
+const ResourceItem = styled.div`
   h4 {
     margin-bottom: 1rem;
     font-weight: 500;
@@ -225,13 +242,15 @@ const ResoureceItem = styled.div`
 
 const ResourceContact = styled.ul`
   font-weight: 500;
+  margin-left: 1rem;
+  list-style-type: '- ';
   li {
-    &::before {
-      content: '- ';
-      margin-right: 2px;
-    }
     &:not(:last-child) {
       margin-bottom: 1rem;
+    }
+    a {
+      color: ${props => props.theme.colors.colorText};
+      text-decoration: underline;
     }
   }
 `

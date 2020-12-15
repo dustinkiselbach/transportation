@@ -1,1 +1,7 @@
-export const LINKS: string[] = ['Home', 'Services', 'Schedules', 'Contact']
+export const LINKS: string[] = [
+  'Home',
+  'Services',
+  'Schedules',
+  'Announcements',
+  'Contact'
+]

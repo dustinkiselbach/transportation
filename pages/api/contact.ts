@@ -16,7 +16,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
     }
   })
 
-  const to = 'dymobility@gmail.com'
+  // const to = 'dymobility@gmail.com'
+  // for testing
+  const to = 'dustinkiselbach@gmail.com'
   const { name, subject, message } = req.body as Record<string, string>
 
   if (!name.length || !subject.length || !message.length) {

@@ -36,14 +36,15 @@ const Contact: React.FC = ({}) => {
         },
         body: JSON.stringify(form)
       })
-      const info = await res.json()
-      if (info) {
-        router.push('contact/success')
-      } else {
+      if (!res.ok) {
         setError(true)
         setTimeout(() => {
           setError(false)
         }, 4000)
+      } else {
+        // const info = await res.json()
+        // console.log(info)
+        router.push('contact/success')
       }
     } catch (e) {
       console.log('Error:' + e)

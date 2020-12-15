@@ -1,19 +1,21 @@
 export interface ContentfulResources {
-  fields: {
-    title: string
-    description: string
-    contactItems: string
-  }
+  title: string
+  description: string
+  contactItems: string
 }
 
 export interface ContentfulSchedules {
-  fields: {
-    title: string
-    days: string
-    location: string
-    pdfLink: string
-    pdf: ContenfulAsset
-  }
+  title: string
+  days: string
+  location: string
+  pdfLink: string
+  pdf: ContenfulAsset
+}
+
+export interface ContentfulAnnouncements {
+  name: string
+  description: string
+  url: string
 }
 
 interface ContenfulAsset {
