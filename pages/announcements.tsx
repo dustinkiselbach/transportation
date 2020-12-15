@@ -28,7 +28,7 @@ const Announcements: React.FC<AnnouncementsProps> = ({ announcements }) => {
               <AnnouncementsItems>
                 {announcements.map(
                   ({ fields: { name, description, url }, sys: { id } }) => (
-                    <AnnouncementsItem>
+                    <AnnouncementsItem key={id}>
                       <h5>
                         <a href={url}>{name}</a>
                       </h5>
