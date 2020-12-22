@@ -15,7 +15,7 @@ export interface ContentfulSchedules {
 export interface ContentfulAnnouncements {
   name: string
   description: string
-  url: string
+  pdf: ContenfulAsset
 }
 
 interface ContenfulAsset {

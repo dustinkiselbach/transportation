@@ -27,10 +27,10 @@ const Announcements: React.FC<AnnouncementsProps> = ({ announcements }) => {
               </h1>
               <AnnouncementsItems>
                 {announcements.map(
-                  ({ fields: { name, description, url }, sys: { id } }) => (
+                  ({ fields: { name, description, pdf }, sys: { id } }) => (
                     <AnnouncementsItem key={id}>
                       <h5>
-                        <a href={url}>{name}</a>
+                        <a href={pdf.fields.file.url}>{name}</a>
                       </h5>
                       <p>{description}</p>
                     </AnnouncementsItem>
