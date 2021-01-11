@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ links }) => {
         <Hamburger
           onClick={() => setClicked(c => !c)}
           {...{ clicked }}
-          light={router.pathname === '/' && !clicked}
+          light={!clicked}
         >
           <span />
           <span />

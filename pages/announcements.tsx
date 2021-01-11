@@ -1,6 +1,6 @@
 import { Entry } from 'contentful'
 import { NextSeo } from 'next-seo'
-import { rgba } from 'polished'
+import { lighten, rgba } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
 import { transportationCMS } from '../cms/transportationCMS'
@@ -83,12 +83,18 @@ const AnnouncementsMain = styled.div`
 const AnnouncementsItems = styled.ul``
 
 const AnnouncementsItem = styled.li`
+  margin-bottom: 2rem;
   h5 {
     font-size: 1rem;
     font-weight: 500;
+    margin-bottom: 2px;
     a {
       color: ${props => props.theme.colors.colorText};
       text-decoration: underline;
+      &:hover {
+        color: ${props => lighten(0.25, props.theme.colors.colorText)};
+      }
+      transition: all 0.2s ease-in-out;
     }
   }
 `

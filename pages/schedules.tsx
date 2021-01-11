@@ -97,9 +97,13 @@ const Route = styled.div`
     margin-right: 4px;
     color: ${props => props.theme.colors.colorText};
     text-decoration: underline;
+    &:hover {
+      color: ${props => lighten(0.25, props.theme.colors.colorText)};
+    }
+    transition: all 0.2s ease-in-out;
   }
   p {
-    color: ${props => lighten(0.2, props.theme.colors.colorText)};
+    color: ${props => lighten(0.1, props.theme.colors.colorText)};
     font-style: italic;
   }
   margin-bottom: 2px;
