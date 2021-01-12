@@ -79,7 +79,7 @@ const Services: React.FC<ServicesProps> = ({ resources }) => {
                       <h4>{title}</h4>
                       <p>{description}</p>
                       <ResourceContact>
-                        {contactItems.split(',').map(contact => {
+                        {contactItems?.split(',').map(contact => {
                           if (contact.split('').includes('@')) {
                             return (
                               <li key={contact}>

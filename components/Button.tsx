@@ -17,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   switch (variant) {
     case 'secondary':
-      return <SecondaryButton>{text}</SecondaryButton>
+      return <SecondaryButton onClick={onSubmit}>{text}</SecondaryButton>
 
     default:
       return (

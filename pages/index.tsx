@@ -35,7 +35,11 @@ export default function Home () {
               <HeroCallUs>
                 <h3>Call us Mon-Friday 8-4pm</h3>
                 <ButtonContainer>
-                  <Button text='(317) 459-7055' variant='secondary' />
+                  <Button
+                    onSubmit={() => router.push('/contact')}
+                    text='(317) 459-7055'
+                    variant='secondary'
+                  />
                 </ButtonContainer>
               </HeroCallUs>
             </HeroTop>

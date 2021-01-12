@@ -98,6 +98,7 @@ const Hamburger = styled.div<{ clicked: boolean; light: boolean }>`
   position: absolute;
   top: 1rem;
   right: 1rem;
+
   @media (min-width: 600px) {
     display: none;
   }
