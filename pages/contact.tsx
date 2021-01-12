@@ -8,6 +8,7 @@ import { ContactForm } from '../components/ContactForm'
 import { Container } from '../components/Container'
 import { Layout } from '../components/Layout'
 import { CONTACT_SEO } from '../seo/next-seo.config'
+import Image from 'next/image'
 
 const Contact: React.FC = ({}) => {
   const router = useRouter()
@@ -74,6 +75,14 @@ const Contact: React.FC = ({}) => {
                   <ContactItem>
                     <li>Madison County Rural Health Council</li>
                     <li>100 Eaton St, PO Box 187 Morrisville, NY 13408</li>
+                    <li>
+                      <Image
+                        src='/ruralhealth.png'
+                        alt='Picture of the author'
+                        width={200}
+                        height={200}
+                      />
+                    </li>
                   </ContactItem>
                 </ContactItems>
                 <ContactFormContainer>
