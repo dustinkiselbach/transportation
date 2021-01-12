@@ -29,7 +29,10 @@ export const Navbar: React.FC<NavbarProps> = ({ links }) => {
           <Links>
             {links.map((link, i) => (
               <NavbarItem
-                active={router.pathname === `/${link.toLowerCase()}`}
+                active={
+                  router.pathname === `/${link.toLowerCase()}` ||
+                  (router.pathname === '/' && link === 'Home')
+                }
                 key={i}
               >
                 <NextLink href={i === 0 ? '/' : `/${link.toLowerCase()}`}>
