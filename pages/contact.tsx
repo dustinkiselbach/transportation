@@ -75,15 +75,13 @@ const Contact: React.FC = ({}) => {
                   <ContactItem>
                     <li>Madison County Rural Health Council</li>
                     <li>100 Eaton St, PO Box 187 Morrisville, NY 13408</li>
-                    <li>
-                      <Image
-                        src='/ruralhealth.png'
-                        alt='Picture of the author'
-                        width={200}
-                        height={200}
-                      />
-                    </li>
                   </ContactItem>
+                  <Image
+                    src='/ruralhealth.png'
+                    alt='Rural Health Logo'
+                    width={225}
+                    height={225}
+                  />
                 </ContactItems>
                 <ContactFormContainer>
                   <h2>Send Us a Message!</h2>
