@@ -79,8 +79,8 @@ const Contact: React.FC = ({}) => {
                   <Image
                     src='/ruralhealth.png'
                     alt='Rural Health Logo'
-                    width={225}
-                    height={225}
+                    width={226}
+                    height={226}
                   />
                 </ContactItems>
                 <ContactFormContainer>
