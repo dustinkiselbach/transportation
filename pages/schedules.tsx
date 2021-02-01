@@ -84,6 +84,7 @@ const SchedulesMain = styled.div`
 
 const SchedulesItems = styled.ul``
 const SchedulesItem = styled.li`
+  margin-bottom: 2rem;
   h5 {
     font-size: 1rem;
     font-weight: 500;

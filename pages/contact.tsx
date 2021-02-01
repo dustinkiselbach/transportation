@@ -37,6 +37,7 @@ const Contact: React.FC = ({}) => {
         },
         body: JSON.stringify(form)
       })
+
       if (!res.ok) {
         setError(true)
         setTimeout(() => {
