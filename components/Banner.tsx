@@ -12,7 +12,6 @@ export const Banner: React.FC<BannerProps> = ({ imageNumber }) => {
     if (!isServer()) {
       const backgroundImageLoader = new Image()
       backgroundImageLoader.src = `/banner${imageNumber}.jpg`
-      console.log(backgroundImageLoader.height)
 
       backgroundImageLoader.onload = () => {
         setBannerUrl(`/banner${imageNumber}.jpg`)

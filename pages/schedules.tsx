@@ -1,11 +1,12 @@
 import { Entry } from 'contentful'
 import { NextSeo } from 'next-seo'
-import { lighten, rgba } from 'polished'
+import { lighten } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
 import { transportationCMS } from '../cms/transportationCMS'
-import { Container } from '../components/Container'
+
 import { Layout } from '../components/Layout'
+import { SectionHeader } from '../components/SectionHeader'
 import { SCHEDULES_SEO } from '../seo/next-seo.config'
 import { ContentfulSchedules } from '../types/Contentful'
 
@@ -18,29 +19,21 @@ const Schedules: React.FC<SchedulesProps> = ({ schedules }) => {
     <>
       <NextSeo {...SCHEDULES_SEO} />
       <Layout>
-        <_Schedules>
-          <Container>
-            <SchedulesMain>
-              <h1>
-                <span>Sc</span>hedules
-              </h1>
-
-              <SchedulesItems>
-                {schedules.map(
-                  ({ fields: { title, days, location, pdf }, sys: { id } }) => (
-                    <SchedulesItem key={id}>
-                      <Route>
-                        <a href={pdf.fields.file.url}>{location}:</a>
-                        <p>[{days}]</p>
-                      </Route>
-                      <h5>{title}</h5>
-                    </SchedulesItem>
-                  )
-                )}
-              </SchedulesItems>
-            </SchedulesMain>
-          </Container>
-        </_Schedules>
+        <SectionHeader title='Schedules'>
+          <SchedulesItems>
+            {schedules.map(
+              ({ fields: { title, days, location, pdf }, sys: { id } }) => (
+                <SchedulesItem key={id}>
+                  <Route>
+                    <a href={pdf.fields.file.url}>{location}:</a>
+                    <p>[{days}]</p>
+                  </Route>
+                  <h5>{title}</h5>
+                </SchedulesItem>
+              )
+            )}
+          </SchedulesItems>
+        </SectionHeader>
       </Layout>
     </>
   )
@@ -62,25 +55,6 @@ export async function getStaticProps () {
     }
   }
 }
-
-const _Schedules = styled.section`
-  margin: 2rem 0;
-  /* min-height: 50vh; */
-`
-
-const SchedulesMain = styled.div`
-  width: 100%;
-  h1 {
-    font-weight: 500;
-    font-size: 3rem;
-    margin-bottom: 4rem;
-    span {
-      border-bottom: 4px solid
-        ${props => rgba(props.theme.colors.colorPrimary, 0.9)};
-    }
-  }
-  margin-bottom: 4rem;
-`
 
 const SchedulesItems = styled.ul``
 const SchedulesItem = styled.li`

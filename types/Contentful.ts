@@ -18,6 +18,12 @@ export interface ContentfulAnnouncements {
   pdf: ContenfulAsset
 }
 
+export interface ContentfulVideos {
+  title: string
+  description: string
+  youtubeLink: string
+}
+
 interface ContenfulAsset {
   fields: {
     description: string

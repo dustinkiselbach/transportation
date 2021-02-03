@@ -5,10 +5,11 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '../components/Button'
 import { ContactForm } from '../components/ContactForm'
-import { Container } from '../components/Container'
+
 import { Layout } from '../components/Layout'
 import { CONTACT_SEO } from '../seo/next-seo.config'
 import Image from 'next/image'
+import { SectionHeader } from '../components/SectionHeader'
 
 const Contact: React.FC = ({}) => {
   const router = useRouter()
@@ -58,44 +59,35 @@ const Contact: React.FC = ({}) => {
     <>
       <NextSeo {...CONTACT_SEO} />
       <Layout>
-        <_Contact>
-          <Container>
-            <ContactMain>
-              <h1>
-                <span>Co</span>ntact
-              </h1>
-              <ContactContent>
-                <ContactItems>
-                  <h2>Contact Us</h2>
-                  <ContactItem>
-                    <li>Donny Ybarra, Mobility Manager</li>
-                    <li>phone: (317) 459-7055</li>
-                    <li>fax: (315) 684-9290</li>
-                    <li>email: dymobility@gmail.com</li>
-                  </ContactItem>
-                  <ContactItem>
-                    <li>Madison County Rural Health Council</li>
-                    <li>100 Eaton St, PO Box 187 Morrisville, NY 13408</li>
-                  </ContactItem>
-                  <Image
-                    src='/ruralhealth.png'
-                    alt='Rural Health Logo'
-                    width={226}
-                    height={226}
-                  />
-                </ContactItems>
-                <ContactFormContainer>
-                  <h2>Send Us a Message!</h2>
-                  <ContactForm {...{ onChange }} />
-                  <ErrorMsg>
-                    {error ? 'Please complete all fields' : null}
-                  </ErrorMsg>
-                  <Button text='Send Message' {...{ onSubmit, loading }} />
-                </ContactFormContainer>
-              </ContactContent>
-            </ContactMain>
-          </Container>
-        </_Contact>
+        <SectionHeader title='Contact'>
+          <ContactContent>
+            <ContactItems>
+              <h2>Contact Us</h2>
+              <ContactItem>
+                <li>Donny Ybarra, Mobility Manager</li>
+                <li>phone: (317) 459-7055</li>
+                <li>fax: (315) 684-9290</li>
+                <li>email: dymobility@gmail.com</li>
+              </ContactItem>
+              <ContactItem>
+                <li>Madison County Rural Health Council</li>
+                <li>100 Eaton St, PO Box 187 Morrisville, NY 13408</li>
+              </ContactItem>
+              <Image
+                src='/ruralhealth.png'
+                alt='Rural Health Logo'
+                width={226}
+                height={226}
+              />
+            </ContactItems>
+            <ContactFormContainer>
+              <h2>Send Us a Message!</h2>
+              <ContactForm {...{ onChange }} />
+              <ErrorMsg>{error ? 'Please complete all fields' : null}</ErrorMsg>
+              <Button text='Send Message' {...{ onSubmit, loading }} />
+            </ContactFormContainer>
+          </ContactContent>
+        </SectionHeader>
       </Layout>
     </>
   )
@@ -103,31 +95,14 @@ const Contact: React.FC = ({}) => {
 
 export default Contact
 
-const _Contact = styled.section`
-  margin: 2rem 0;
-`
-const ContactMain = styled.div`
-  width: 100%;
-  h1 {
-    font-weight: 500;
-    font-size: 3rem;
-    margin-bottom: 4rem;
-    span {
-      border-bottom: 4px solid
-        ${props => rgba(props.theme.colors.colorPrimary, 0.9)};
-    }
-  }
+const ContactContent = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   h2 {
     font-weight: 500;
     font-size: 2rem;
     margin-bottom: 2rem;
   }
-  margin-bottom: 4rem;
-`
-
-const ContactContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
 `
 
 const ContactItems = styled.div`

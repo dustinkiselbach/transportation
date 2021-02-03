@@ -3,5 +3,6 @@ export const LINKS: string[] = [
   'Services',
   'Schedules',
   'Announcements',
+  'Videos',
   'Contact'
 ]

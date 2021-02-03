@@ -29,3 +29,7 @@ export const SCHEDULES_SEO: NextSeoProps = {
 export const ANNOUNCEMENTS_SEO: NextSeoProps = {
   title: `${SITE_NAME} | Announcements`
 }
+
+export const VIDEOS_SEO: NextSeoProps = {
+  title: `${SITE_NAME} | Videos`
+}
