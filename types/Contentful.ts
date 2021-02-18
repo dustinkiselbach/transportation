@@ -24,6 +24,11 @@ export interface ContentfulVideos {
   youtubeLink: string
 }
 
+export interface ContentfulAbout {
+  firstParagraph: string
+  secondParagraph: string
+}
+
 interface ContenfulAsset {
   fields: {
     description: string

@@ -30,10 +30,10 @@ const Services: React.FC<ServicesProps> = ({ resources }) => {
                     <h2>Transportation Coordination</h2>
                   </ServicesItemHeader>
                   <ServicesItemContent>
-                    <h3>
+                    <p>
                       Transportation Coordination with Madison County Mobility
                       Management can look like:
-                    </h3>
+                    </p>
                     <li>
                       Contacting for assistance with connecting to resources
                     </li>
@@ -176,25 +176,31 @@ const ServicesItemHeader = styled.div`
     font-size: 2rem;
     margin: 1rem 0;
   }
+  @media (max-width: 800px) {
+    padding: 1rem;
+  }
 `
 
 const ServicesItemContent = styled.ul`
   padding: 2rem;
   list-style-type: '- ';
 
-  h3 {
-    margin-bottom: 2rem;
+  p {
+    margin-bottom: 1rem;
     font-weight: 400;
-    font-size: 1rem;
     color: ${props => rgba(props.theme.colors.colorText, 0.9)};
   }
+
   li {
     margin-left: 1rem;
 
     font-weight: 500;
     &:not(:last-child) {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
+  }
+  @media (max-width: 800px) {
+    padding: 1rem;
   }
 `
 
@@ -216,9 +222,12 @@ const ResourceItems = styled.div`
 `
 
 const ResourceItem = styled.div`
+  height: auto;
+
   h4 {
     margin-bottom: 1rem;
     font-weight: 500;
+    font-size: 1.2rem;
   }
 
   p {
@@ -233,6 +242,10 @@ const ResourceItem = styled.div`
 
   @media (max-width: 1000px) {
     flex: 1 1 44%;
+  }
+
+  @media (max-width: 800px) {
+    padding: 1rem;
   }
 
   @media (max-width: 600px) {

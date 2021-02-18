@@ -82,6 +82,9 @@ const VideoItem = styled.li`
 
   padding: 2rem;
   background-color: ${props => props.theme.colors.colorOffWhite};
+  @media (max-width: 800px) {
+    padding: 1rem;
+  }
 `
 
 const VideoContainer = styled.div`

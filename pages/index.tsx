@@ -7,8 +7,15 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { isServer } from '../utils/isServer'
+import { transportationCMS } from '../cms/transportationCMS'
+import { ContentfulAbout } from '../types/Contentful'
+import { Entry } from 'contentful'
 
-export default function Home () {
+interface HomeProps {
+  about: Entry<ContentfulAbout>
+}
+
+export default function Home ({ about }: HomeProps) {
   const router = useRouter()
 
   const [heroUrl, setHeroUrl] = useState<null | string>(null)
@@ -62,28 +69,9 @@ export default function Home () {
               <h1>
                 <span>Ab</span>out
               </h1>
-              <p>
-                Mobility Management is about bringing together the people who
-                need transportation, with the people who provide transportation
-                and the people who can pay for transportation, to address
-                community transportation needs.
-              </p>
-              <p>
-                It is making the most of existing resources, creating new
-                services when needed and looking at the issues through the lens
-                of the rider
-              </p>
+              <p>{about.fields.firstParagraph}</p>
               <h2>How it benefits your community: </h2>
-              <p>
-                Mobility management can be the conduit for transportation
-                solutions within your community by allowing the human service
-                organizations to focus delivering their services and not spend
-                time and resources deciphering how people will access those
-                services. Mobility management keeps track of the pulse within
-                the community and how various programs may be able to
-                collaborate or combine efforts to provide better access to the
-                available programs and services in the community.
-              </p>
+              <p>{about.fields.secondParagraph}</p>
             </AboutContent>
             <__Fillgrid />
             <AboutImg />
@@ -92,6 +80,21 @@ export default function Home () {
       </Layout>
     </>
   )
+}
+
+export async function getStaticProps () {
+  const res = await transportationCMS.getEntries<ContentfulAbout>({
+    content_type: 'about'
+  })
+
+  const about = res.items[0]
+
+  return {
+    revalidate: 60 * 10,
+    props: {
+      about
+    }
+  }
 }
 
 const Hero = styled.section<{ img: string }>`
@@ -232,6 +235,7 @@ const AboutContent = styled.div`
 
   @media (max-width: 800px) {
     width: 100%;
+    padding: 1rem;
   }
 
   h1 {
@@ -250,6 +254,8 @@ const AboutContent = styled.div`
 
   p {
     margin: 1rem 0;
+    line-height: 2;
+    color: ${props => rgba(props.theme.colors.colorText, 0.9)};
   }
 `
 

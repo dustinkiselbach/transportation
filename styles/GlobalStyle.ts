@@ -40,7 +40,11 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     p {
-        line-height: 1.6rem;
+        line-height: 1.6;
+    }
+
+    li {
+        line-height: 1.6;
     }
 
     button {
