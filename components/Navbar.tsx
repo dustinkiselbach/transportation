@@ -100,7 +100,12 @@ export const Navbar: React.FC = () => {
                     <MobileSubitems>
                       {EXTRA_LINK_OPTIONS[link].map(subLink => (
                         <li key={subLink}>
-                          <NextLink href={`/${subLink.toLowerCase()}`}>
+                          <NextLink
+                            href={`/${subLink
+                              .split(' ')
+                              .join('-')
+                              .toLowerCase()}`}
+                          >
                             {subLink}
                           </NextLink>
                         </li>
