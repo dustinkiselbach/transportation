@@ -29,6 +29,16 @@ export interface ContentfulAbout {
   secondParagraph: string
 }
 
+export interface ContentfulDocuments {
+  title: string
+  document: ContenfulAsset
+}
+
+export interface ContentfulTravelTraining {
+  description: string
+  flyer: ContenfulAsset
+}
+
 interface ContenfulAsset {
   fields: {
     description: string

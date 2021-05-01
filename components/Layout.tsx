@@ -11,7 +11,7 @@ export const Layout: React.FC<{}> = ({ children }) => {
 
   return (
     <>
-      <Navbar links={LINKS} />
+      <Navbar />
       {router.pathname !== '/' ? (
         <Banner
           imageNumber={LINKS.map(link => link.toLowerCase()).indexOf(
@@ -19,8 +19,8 @@ export const Layout: React.FC<{}> = ({ children }) => {
           )}
         />
       ) : null}
+      <div style={{ minHeight: '64vh' }}>{children}</div>
 
-      {children}
       <Footer />
     </>
   )

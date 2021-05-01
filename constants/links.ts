@@ -1,8 +1,9 @@
-export const LINKS: string[] = [
+export const LINKS = [
   'Home',
   'Services',
   'Schedules',
   'Announcements',
+  'Documents',
   'Videos',
   'Contact'
-]
+] as const

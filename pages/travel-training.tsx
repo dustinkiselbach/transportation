@@ -1,0 +1,72 @@
+import { Entry } from 'contentful'
+import { lighten, rgba } from 'polished'
+import styled from 'styled-components'
+import { transportationCMS } from '../cms/transportationCMS'
+import { Layout } from '../components/Layout'
+import { SectionHeader } from '../components/SectionHeader'
+import { ContentfulTravelTraining } from '../types/Contentful'
+import NextLink from 'next/link'
+
+interface TravelTrainingProps {
+  travelTraining: Entry<ContentfulTravelTraining>
+}
+
+const TravelTraining = ({ travelTraining }: TravelTrainingProps) => {
+  const {
+    fields: { description, flyer }
+  } = travelTraining
+  return (
+    <Layout>
+      <SectionHeader title='Travel Training'>
+        <TravelTrainingDescription>
+          <p>{description}</p>
+          <a href={flyer.fields.file.url}>{flyer.fields.title}</a>
+          <ContactUs>
+            <NextLink href='contact'>Contact us for more information</NextLink>
+          </ContactUs>
+        </TravelTrainingDescription>
+      </SectionHeader>
+    </Layout>
+  )
+}
+
+export async function getStaticProps () {
+  const res = await transportationCMS.getEntries<ContentfulTravelTraining>({
+    content_type: 'travelTraining'
+  })
+
+  const travelTraining = res.items[0]
+
+  return {
+    revalidate: 60 * 10,
+    props: {
+      travelTraining
+    }
+  }
+}
+
+const TravelTrainingDescription = styled.div`
+  font-size: 1.5rem;
+  color: ${props => rgba(props.theme.colors.colorText, 0.9)};
+  p {
+    margin-bottom: 2rem;
+  }
+  a {
+    color: ${props => props.theme.colors.colorText};
+    text-decoration: underline;
+    &:hover {
+      color: ${props => lighten(0.25, props.theme.colors.colorText)};
+    }
+    transition: all 0.2s ease-in-out;
+  }
+`
+
+const ContactUs = styled.div`
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  a {
+    color: ${props => rgba(props.theme.colors.colorText, 0.9)};
+  }
+`
+
+export default TravelTraining

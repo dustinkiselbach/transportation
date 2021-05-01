@@ -5,13 +5,19 @@ import { rgba } from 'polished'
 import { useRouter } from 'next/router'
 import { Container } from './Container'
 import { isServer } from '../utils/isServer'
+import { LINKS } from '../constants/links'
 
-interface NavbarProps {
-  links: string[]
+const EXTRA_LINK_OPTIONS: Record<string, string[]> = {
+  Announcements: [
+    'Announcement Center',
+    'Travel Training',
+    'Madison Transit Token Program'
+  ]
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ links }) => {
+export const Navbar: React.FC = () => {
   const [clicked, setClicked] = useState(false)
+  const [activeLinkWithOptions, setActiveLinkWithOptions] = useState('')
   const router = useRouter()
 
   useEffect(() => {
@@ -27,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ links }) => {
       <Container>
         <NavbarMain>
           <Links>
-            {links.map((link, i) => (
+            {LINKS.map((link, i) => (
               <NavbarItem
                 active={
                   router.pathname === `/${link.toLowerCase()}` ||
@@ -35,9 +41,34 @@ export const Navbar: React.FC<NavbarProps> = ({ links }) => {
                 }
                 key={i}
               >
-                <NextLink href={i === 0 ? '/' : `/${link.toLowerCase()}`}>
-                  {link}
-                </NextLink>
+                {EXTRA_LINK_OPTIONS[link] ? (
+                  <NavbarItemWithSubitems
+                    onMouseEnter={() => setActiveLinkWithOptions(link)}
+                    onMouseLeave={() => setActiveLinkWithOptions('')}
+                  >
+                    {link}
+                    {link === activeLinkWithOptions ? (
+                      <Subitems>
+                        {EXTRA_LINK_OPTIONS[link].map(subLink => (
+                          <li key={subLink}>
+                            <NextLink
+                              href={`/${subLink
+                                .split(' ')
+                                .join('-')
+                                .toLowerCase()}`}
+                            >
+                              {subLink}
+                            </NextLink>
+                          </li>
+                        ))}
+                      </Subitems>
+                    ) : null}
+                  </NavbarItemWithSubitems>
+                ) : (
+                  <NextLink href={i === 0 ? '/' : `/${link.toLowerCase()}`}>
+                    {link}
+                  </NextLink>
+                )}
               </NavbarItem>
             ))}
           </Links>
@@ -54,11 +85,34 @@ export const Navbar: React.FC<NavbarProps> = ({ links }) => {
       </Container>
       <MobileMenu {...{ clicked }}>
         <MobileMenuContainer>
-          {links.map((link, i) => (
+          {LINKS.map((link, i) => (
             <li key={i}>
-              <NextLink href={i === 0 ? '/' : `/${link.toLowerCase()}`}>
-                {link}
-              </NextLink>
+              {EXTRA_LINK_OPTIONS[link] ? (
+                <NavbarItemWithSubitems
+                  onClick={() =>
+                    setActiveLinkWithOptions(prevLink =>
+                      !prevLink ? link : ''
+                    )
+                  }
+                >
+                  {link}
+                  {link === activeLinkWithOptions ? (
+                    <MobileSubitems>
+                      {EXTRA_LINK_OPTIONS[link].map(subLink => (
+                        <li key={subLink}>
+                          <NextLink href={`/${subLink.toLowerCase()}`}>
+                            {subLink}
+                          </NextLink>
+                        </li>
+                      ))}
+                    </MobileSubitems>
+                  ) : null}
+                </NavbarItemWithSubitems>
+              ) : (
+                <NextLink href={i === 0 ? '/' : `/${link.toLowerCase()}`}>
+                  {link}
+                </NextLink>
+              )}
             </li>
           ))}
         </MobileMenuContainer>
@@ -89,7 +143,7 @@ const Links = styled.ul`
   align-items: center;
   justify-content: space-between;
   width: 50%;
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     width: 75%;
   }
 `
@@ -170,6 +224,37 @@ const NavbarItem = styled.li<{ active: boolean }>`
     }
   }
 `
+
+const NavbarItemWithSubitems = styled.div`
+  cursor: pointer;
+`
+
+const Subitems = styled.ul`
+  position: absolute;
+  z-index: 2;
+  background-color: ${({ theme }) => theme.colors.colorOffWhite};
+  padding: 1rem;
+  padding-top: 2rem;
+
+  li {
+    margin-bottom: 1rem;
+  }
+`
+
+const MobileSubitems = styled.ul`
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+
+  li {
+    font-size: 1.25rem;
+    margin: 1rem;
+
+    a {
+      font-weight: 400;
+    }
+  }
+`
+
 const MobileMenu = styled.div<{ clicked: boolean }>`
   @media (min-width: 600px) {
     display: none;
@@ -190,11 +275,15 @@ const MobileMenuContainer = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin-top: auto;
+  text-align: center;
   height: 100%;
   li {
-    margin: 1.5rem;
+    margin: 2rem;
     text-align: center;
+    font-weight: 500;
+    color: ${props => props.theme.colors.colorText};
 
     font-size: 1.5rem;
 

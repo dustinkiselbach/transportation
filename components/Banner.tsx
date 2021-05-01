@@ -8,6 +8,10 @@ interface BannerProps {
 export const Banner: React.FC<BannerProps> = ({ imageNumber }) => {
   const [bannerUrl, setBannerUrl] = useState<null | string>(null)
 
+  if (imageNumber === -1) {
+    imageNumber = 3
+  }
+
   useEffect(() => {
     if (!isServer()) {
       const backgroundImageLoader = new Image()
