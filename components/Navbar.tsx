@@ -95,7 +95,7 @@ export const Navbar: React.FC = () => {
                     )
                   }
                 >
-                  {link}
+                  {link} {link === activeLinkWithOptions ? '-' : '+'}
                   {link === activeLinkWithOptions ? (
                     <MobileSubitems>
                       {EXTRA_LINK_OPTIONS[link].map(subLink => (
