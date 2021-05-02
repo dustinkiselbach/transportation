@@ -74,7 +74,7 @@ const Contact: React.FC = ({}) => {
                 <li>100 Eaton St, PO Box 187 Morrisville, NY 13408</li>
               </ContactItem>
               <Image
-                src='/ruralhealth.png'
+                src='/GOMADISONNY.png'
                 alt='Rural Health Logo'
                 width={226}
                 height={226}
