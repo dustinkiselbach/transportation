@@ -5,7 +5,7 @@ import { transportationCMS } from '../cms/transportationCMS'
 import { Layout } from '../components/Layout'
 import { SectionHeader } from '../components/SectionHeader'
 import { ContentfulTravelTraining } from '../types/Contentful'
-import NextLink from 'next/link'
+
 import { Button } from '../components/Button'
 import { useRouter } from 'next/router'
 
@@ -61,14 +61,6 @@ const TravelTrainingDescription = styled.div`
       color: ${props => lighten(0.25, props.theme.colors.colorText)};
     }
     transition: all 0.2s ease-in-out;
-  }
-`
-
-const ContactUs = styled.div`
-  margin-top: 2rem;
-  font-size: 1.25rem;
-  a {
-    color: ${props => rgba(props.theme.colors.colorText, 0.9)};
   }
 `
 
