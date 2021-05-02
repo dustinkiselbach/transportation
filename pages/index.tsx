@@ -201,14 +201,14 @@ const About = styled.section`
   display: flex;
   padding: 3rem 0;
   position: relative;
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     height: auto;
   }
 `
 const __Fillgrid = styled.div`
   height: 100%;
   width: 50%;
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     display: none;
   }
 `
@@ -225,7 +225,7 @@ const AboutContent = styled.div`
   padding: 2rem;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     height: 100%;
     transform: translate(0, 0);
     top: 0;

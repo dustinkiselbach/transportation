@@ -148,7 +148,7 @@ const Links = styled.ul`
   align-items: center;
   justify-content: space-between;
   width: 50%;
-  @media (max-width: 1400px) {
+  @media (max-width: 1800px) {
     width: 75%;
   }
 `
