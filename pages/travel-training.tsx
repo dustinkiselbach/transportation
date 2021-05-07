@@ -49,7 +49,7 @@ export async function getStaticProps () {
 const TravelTrainingDescription = styled.div`
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  color: ${props => rgba(props.theme.colors.colorText, 0.9)};
+  
   p {
     margin-bottom: 2rem;
   }
