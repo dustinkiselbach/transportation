@@ -6,10 +6,7 @@ import nodemailer from 'nodemailer'
 export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // use SSL
-
+    service: "Gmail",
     auth: {
       user: process.env.EMAIL_USER || '', // generated ethereal user
       pass: process.env.EMAIL_PASSWORD || '' // generated ethereal password
