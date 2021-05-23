@@ -33,3 +33,15 @@ export const ANNOUNCEMENTS_SEO: NextSeoProps = {
 export const VIDEOS_SEO: NextSeoProps = {
   title: `${SITE_NAME} | Videos`
 }
+
+export const DOCUMENTS_SEO: NextSeoProps = {
+  title: `${SITE_NAME} | Documents`
+}
+
+export const TRAVEl_TRAINING_SEO: NextSeoProps = {
+  title: `${SITE_NAME} | Travel Training`
+}
+
+export const TOKEN_SEO: NextSeoProps = {
+  title: `${SITE_NAME} | Madison Transit Token Program`
+}

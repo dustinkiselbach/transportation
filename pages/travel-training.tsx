@@ -8,6 +8,8 @@ import { ContentfulTravelTraining } from "../types/Contentful";
 
 import { Button } from "../components/Button";
 import { useRouter } from "next/router";
+import { TRAVEl_TRAINING_SEO } from "../seo/next-seo.config";
+import { NextSeo } from "next-seo";
 
 interface TravelTrainingProps {
   travelTraining: Entry<ContentfulTravelTraining>;
@@ -18,17 +20,20 @@ const TravelTraining = ({ travelTraining }: TravelTrainingProps) => {
   const {
     fields: { description, flyer },
   } = travelTraining;
-  // TODO add SEO
+
   return (
-    <Layout>
-      <SectionHeader title="Travel Training">
-        <TravelTrainingDescription>
-          <p>{description}</p>
-          <a href={flyer.fields.file.url}>{flyer.fields.title}</a>
-        </TravelTrainingDescription>
-        <Button text="Contact Us" onSubmit={() => router.push("/contact")} />
-      </SectionHeader>
-    </Layout>
+    <>
+      <NextSeo {...TRAVEl_TRAINING_SEO} />
+      <Layout>
+        <SectionHeader title="Travel Training">
+          <TravelTrainingDescription>
+            <p>{description}</p>
+            <a href={flyer.fields.file.url}>{flyer.fields.title}</a>
+          </TravelTrainingDescription>
+          <Button text="Contact Us" onSubmit={() => router.push("/contact")} />
+        </SectionHeader>
+      </Layout>
+    </>
   );
 };
 
