@@ -1,15 +1,16 @@
-import styled from 'styled-components'
-import { Layout } from '../components/Layout'
-import { SectionHeader } from '../components/SectionHeader'
+import styled from "styled-components";
+import { Layout } from "../components/Layout";
+import { SectionHeader } from "../components/SectionHeader";
 
-import { useRouter } from 'next/router'
-import { Button } from '../components/Button'
+import { useRouter } from "next/router";
+import { Button } from "../components/Button";
 
 const MadisonTransitTokenProgram = () => {
-  const router = useRouter()
+  const router = useRouter();
+  // TODO add seo
   return (
     <Layout>
-      <SectionHeader title='Madison Transit Token Donation Program'>
+      <SectionHeader title="Madison Transit Token Donation Program">
         <SubHeader>
           Connecting residents to resources such as bus tokens, schedules, and
           information about transit options in Madison County.
@@ -21,19 +22,19 @@ const MadisonTransitTokenProgram = () => {
           </p>
           <ul>
             <li>
-              You can donate by dropping off cash or check to the{' '}
+              You can donate by dropping off cash or check to the{" "}
               <strong>Hamilton Public Library</strong> (13 Broad Street,
               Hamilton, NY 13346).
             </li>
             <li>
-              If you are contributing by check, please make it payable to:{' '}
+              If you are contributing by check, please make it payable to:{" "}
               <strong>
                 Birnie Bus Service, Inc. – Madison Transit System 2486 NY-12B -
-                Hamilton, NY 13346{' '}
+                Hamilton, NY 13346{" "}
               </strong>
             </li>
             <li>
-              Checks (not cash) can also be mailed to:{' '}
+              Checks (not cash) can also be mailed to:{" "}
               <strong>
                 Mobility Management 100 Eaton Street, PO Box 187 Morrisville, NY
                 13408
@@ -48,7 +49,7 @@ const MadisonTransitTokenProgram = () => {
           <p>
             Your contributions will be picked up by the Madison County Mobility
             Manager, Donny Ybarra, and taken to Birnie Bus – Madison Transit
-            System to purchase tokens to distribute out to the community!{' '}
+            System to purchase tokens to distribute out to the community!{" "}
           </p>
         </Content>
         <SubHeader>
@@ -73,22 +74,22 @@ const MadisonTransitTokenProgram = () => {
           </ul>
         </Content>
         <SubHeader>
-          {' '}
-          Feel free to reach out to Madison County Mobility Manager{' '}
+          {" "}
+          Feel free to reach out to Madison County Mobility Manager{" "}
           <i>Donny Ybarra</i> if you have any further questions. Thank you!
         </SubHeader>
-        <Button text='Contact Us' onSubmit={() => router.push('/contact')} />
+        <Button text="Contact Us" onSubmit={() => router.push("/contact")} />
       </SectionHeader>
     </Layout>
-  )
-}
+  );
+};
 
 const SubHeader = styled.h3`
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 2rem;
   line-height: 1.6;
-`
+`;
 
 const Content = styled.div`
   margin-bottom: 2rem;
@@ -103,6 +104,6 @@ const Content = styled.div`
     margin-bottom: 1rem;
     margin-left: 2rem;
   }
-`
+`;
 
-export default MadisonTransitTokenProgram
+export default MadisonTransitTokenProgram;

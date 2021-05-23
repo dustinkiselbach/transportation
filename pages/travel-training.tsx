@@ -18,6 +18,7 @@ const TravelTraining = ({ travelTraining }: TravelTrainingProps) => {
   const {
     fields: { description, flyer },
   } = travelTraining;
+  // TODO add SEO
   return (
     <Layout>
       <SectionHeader title="Travel Training">
