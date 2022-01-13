@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<boolean>) => {
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // use SSL
+    secure: false, // use SSL
 
     auth: {
       user: process.env.EMAIL_USER || '', // generated ethereal user
