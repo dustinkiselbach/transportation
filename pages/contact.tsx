@@ -40,6 +40,13 @@ const Contact: React.FC = ({}) => {
       });
 
       if (!res.ok) {
+        if (res.status === 500) {
+          alert(
+            "There is a problem with this form. Please inform dymobility@gmail.com"
+          );
+          setLoading(false);
+          return;
+        }
         setError(true);
         setTimeout(() => {
           setError(false);
@@ -80,12 +87,12 @@ const Contact: React.FC = ({}) => {
                 height={226}
               />
             </ContactItems>
-            <ContactFormContainer>
+            {/* <ContactFormContainer>
               <h2>Send Us a Message!</h2>
               <ContactForm {...{ onChange }} />
               <ErrorMsg>{error ? "Please complete all fields" : null}</ErrorMsg>
               <Button text="Send Message" {...{ onSubmit, loading }} />
-            </ContactFormContainer>
+            </ContactFormContainer> */}
           </ContactContent>
         </SectionHeader>
       </Layout>
