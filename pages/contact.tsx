@@ -1,10 +1,11 @@
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { rgba } from "polished";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../components/Button";
 import { ContactForm } from "../components/ContactForm";
+import emailjs from "@emailjs/browser";
 
 import { Layout } from "../components/Layout";
 import { CONTACT_SEO } from "../seo/next-seo.config";
@@ -21,43 +22,38 @@ const Contact: React.FC = ({}) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const onChange = (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm({ ...form, [e.currentTarget.name]: e.currentTarget.value });
   };
+  console.log(process.env.NEXT_PUBLIC_MAIL_PUBLIC_KEY);
 
   const onSubmit = async () => {
     setLoading((isLoading) => !isLoading);
+    const { name, subject, message } = form;
+    if (!name || !subject || !message) {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
+      setLoading(false);
+      return;
+    }
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      await emailjs.sendForm(
+        "default_service",
+        "template_0eucmys",
+        formRef.current!,
+        process.env.NEXT_PUBLIC_MAIL_PUBLIC_KEY || ""
+      );
 
-      if (!res.ok) {
-        if (res.status === 500) {
-          alert(
-            "There is a problem with this form. Please inform dymobility@gmail.com"
-          );
-          setLoading(false);
-          return;
-        }
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 4000);
-      } else {
-        // const info = await res.json()
-        // console.log(info)
-        router.push("contact/success");
-      }
+      router.push("contact/success");
     } catch (e) {
       console.log("Error:" + e);
+      alert("Sorry, please contact dymobility@gmail.com and report this issue");
     }
     setLoading((isLoading) => !isLoading);
   };
@@ -87,12 +83,12 @@ const Contact: React.FC = ({}) => {
                 height={226}
               />
             </ContactItems>
-            {/* <ContactFormContainer>
+            <ContactFormContainer>
               <h2>Send Us a Message!</h2>
-              <ContactForm {...{ onChange }} />
+              <ContactForm {...{ onChange, formRef }} />
               <ErrorMsg>{error ? "Please complete all fields" : null}</ErrorMsg>
               <Button text="Send Message" {...{ onSubmit, loading }} />
-            </ContactFormContainer> */}
+            </ContactFormContainer>
           </ContactContent>
         </SectionHeader>
       </Layout>
