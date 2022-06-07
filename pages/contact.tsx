@@ -29,7 +29,6 @@ const Contact: React.FC = ({}) => {
   ) => {
     setForm({ ...form, [e.currentTarget.name]: e.currentTarget.value });
   };
-  console.log(process.env.NEXT_PUBLIC_MAIL_PUBLIC_KEY);
 
   const onSubmit = async () => {
     setLoading((isLoading) => !isLoading);
