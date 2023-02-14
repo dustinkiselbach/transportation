@@ -73,7 +73,7 @@ const Contact: React.FC = ({}) => {
               </ContactItem>
               <ContactItem>
                 <li>Madison County Rural Health Council</li>
-                <li>100 Eaton St, PO Box 187 Morrisville, NY 13408</li>
+                <li>2662 Route 20 East (Unit 1) PO BOX 430 Cazenovia, NY 13035</li>
               </ContactItem>
               <Image
                 src="/GOMADISONNY.png"

@@ -40,8 +40,7 @@ const MadisonTransitTokenProgram = () => {
               <li>
                 Checks (not cash) can also be mailed to:{" "}
                 <strong>
-                  Mobility Management 100 Eaton Street, PO Box 187 Morrisville,
-                  NY 13408
+                  Mobility Management 2662 Route 20 East (Unit 1) PO BOX 430 Cazenovia, NY 13035
                 </strong>
               </li>
               <li>
