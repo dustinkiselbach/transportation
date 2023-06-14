@@ -8,7 +8,7 @@ import { isServer } from '../utils/isServer'
 import { LINKS } from '../constants/links'
 
 const EXTRA_LINK_OPTIONS: Record<string, string[]> = {
-  Announcements: [
+  Programming: [
     'Announcement Center',
     'Travel Training',
     'Madison Transit Token Program'
