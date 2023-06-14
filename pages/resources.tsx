@@ -22,52 +22,7 @@ const Services: React.FC<ServicesProps> = ({ resources }) => {
           <Container>
             <ServicesMain>
               <h1>
-                <span>Se</span>rvices
-              </h1>
-              <ServicesItems>
-                <ServicesItem>
-                  <ServicesItemHeader>
-                    <h2>Transportation Coordination</h2>
-                  </ServicesItemHeader>
-                  <ServicesItemContent>
-                    <p>
-                      Transportation Coordination with Madison County Mobility
-                      Management can look like:
-                    </p>
-                    <li>
-                      Contacting for assistance with connecting to resources
-                    </li>
-                    <li>
-                      Seeking assistance with planning a local trip throughout
-                      Madison County
-                    </li>
-                    <li>
-                      Coordinating with service providers to facilitate
-                      transportation services that fit individuals best
-                    </li>
-                  </ServicesItemContent>
-                </ServicesItem>
-                <ServicesItem>
-                  <ServicesItemHeader>
-                    <h2>MCRHC Mobility Manager MTS Token Program</h2>
-                  </ServicesItemHeader>
-                  <ServicesItemContent>
-                    <p>
-                      Madison Transit System uses a token system to pay for
-                      public transit trips with the shuttles, if eligible,
-                      contact the Madison County Mobility Management office to
-                      ask about applying for bulk token purchases and/or “free
-                      rides” (based on availability at time of contact).
-                    </p>
-                  </ServicesItemContent>
-                </ServicesItem>
-              </ServicesItems>
-            </ServicesMain>
-          </Container>
-          <Container>
-            <Resources>
-              <h1>
-                <span>In</span>ventory of Resources
+                <span>Re</span>sources
               </h1>
               <ResourceItems>
                 {resources.map(
@@ -105,7 +60,7 @@ const Services: React.FC<ServicesProps> = ({ resources }) => {
                   )
                 )}
               </ResourceItems>
-            </Resources>
+            </ServicesMain>
           </Container>
         </_Services>
       </Layout>

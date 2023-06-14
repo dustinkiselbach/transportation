@@ -1,6 +1,6 @@
 export const LINKS = [
   'Home',
-  'Services',
+  'Resources',
   'Schedules',
   'Announcements',
   'Documents',
