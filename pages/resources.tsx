@@ -1,4 +1,4 @@
-import { lighten, rgba } from 'polished'
+import { rgba } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../components/Container'
