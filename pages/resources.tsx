@@ -101,18 +101,6 @@ const ServicesMain = styled.div`
   margin-bottom: 4rem;
 `
 
-const Resources = styled.div`
-  h1 {
-    font-weight: 500;
-    margin-bottom: 3rem;
-  }
-
-  span {
-    border-bottom: 4px solid
-      ${props => rgba(props.theme.colors.colorPrimary, 0.9)};
-  }
-`
-
 const ResourceItems = styled.div`
   display: flex;
   flex-wrap: wrap;
