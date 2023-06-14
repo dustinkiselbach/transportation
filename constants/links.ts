@@ -2,7 +2,7 @@ export const LINKS = [
   'Home',
   'Resources',
   'Schedules',
-  'Announcements',
+  'Programming',
   'Documents',
   'Videos',
   'Contact'

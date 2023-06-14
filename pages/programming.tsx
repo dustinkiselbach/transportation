@@ -20,7 +20,7 @@ const Announcements: React.FC<AnnouncementsProps> = ({ announcements }) => {
       <NextSeo {...ANNOUNCEMENTS_SEO} />
 
       <Layout>
-        <SectionHeader title='Announcements'>
+        <SectionHeader title='Programming'>
           <AnnouncementsItems>
             {announcements.map(
               ({ fields: { name, description, pdf }, sys: { id } }) => (

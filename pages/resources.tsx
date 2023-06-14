@@ -101,64 +101,6 @@ const ServicesMain = styled.div`
   margin-bottom: 4rem;
 `
 
-const ServicesItems = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
-const ServicesItem = styled.div`
-  flex: 1;
-  flex-wrap: wrap;
-  background-color: ${props => props.theme.colors.colorOffWhite};
-  display: flex;
-
-  flex-direction: column;
-
-  &:first-child {
-    margin-right: 1rem;
-  }
-  @media (max-width: 600px) {
-    margin-top: 2rem;
-    flex: 0 0 100%;
-  }
-`
-const ServicesItemHeader = styled.div`
-  padding: 1rem 2rem;
-  background-color: ${props =>
-    lighten(0.025, props.theme.colors.colorOffWhite)};
-  h2 {
-    font-weight: 500;
-    font-size: 2rem;
-    margin: 1rem 0;
-  }
-  @media (max-width: 800px) {
-    padding: 1rem;
-  }
-`
-
-const ServicesItemContent = styled.ul`
-  padding: 2rem;
-  list-style-type: '- ';
-
-  p {
-    margin-bottom: 1rem;
-    font-weight: 400;
-    color: ${props => rgba(props.theme.colors.colorText, 0.9)};
-  }
-
-  li {
-    margin-left: 1rem;
-
-    font-weight: 500;
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-  }
-  @media (max-width: 800px) {
-    padding: 1rem;
-  }
-`
-
 const Resources = styled.div`
   h1 {
     font-weight: 500;
