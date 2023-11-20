@@ -33,8 +33,7 @@ const MadisonTransitTokenProgram = () => {
               <li>
                 If you are contributing by check, please make it payable to:{" "}
                 <strong>
-                  Birnie Bus Service, Inc. – Madison Transit System 2486 NY-12B
-                  - Hamilton, NY 13346{" "}
+                  Madison County Rural Health Council 2662 Route 20 East Unit 1 PO Box 430 Cazenoiva, NY 13035, under memo you will add for Mobility Management
                 </strong>
               </li>
               <li>
@@ -42,11 +41,6 @@ const MadisonTransitTokenProgram = () => {
                 <strong>
                   Mobility Management 2662 Route 20 East (Unit 1) PO BOX 430 Cazenovia, NY 13035
                 </strong>
-              </li>
-              <li>
-                If you choose to mail a check, make sure to include a separate
-                note with the Madison Transit System Token Donation Program as
-                the recipient.
               </li>
             </ul>
             <p>
