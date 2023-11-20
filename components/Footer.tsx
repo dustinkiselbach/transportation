@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
             <h4>Helpful Links</h4>
             <li>
               <a
-                href='https://www.madisoncounty.ny.gov/DocumentCenter/View/1010/Coordinated-Transportation-Plan-2010---May-2015-Update-PDF?bidId= '
+                href='https://assets.ctfassets.net/20u7zumtf2id/6r894OWoTWVf06lY85ugKa/ef89e983425effa3496002c40445b898/Final_Coordinated_Transportation_Plan_2022.pdf'
                 target='_blank'
               >
                 Coordinated Transportation Plan
